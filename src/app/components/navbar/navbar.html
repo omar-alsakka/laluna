@@ -1,0 +1,52 @@
+<header class="site-header">
+  <nav class="navbar" [attr.aria-label]="languageService.isArabic() ? 'القائمة الرئيسية' : 'Main navigation'">
+    <a class="brand" routerLink="/" (click)="closeMenu()" [attr.aria-label]="languageService.isArabic() ? 'Laluna coffe الصفحة الرئيسية' : 'Laluna coffe home'">
+      <img src="assets/img/logo.jpeg" alt="Laluna coffe logo" class="brand__logo" />
+      <span class="brand__name">Laluna coffe</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      [class.nav-toggle--open]="menuOpen()"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="languageService.isArabic() ? 'فتح القائمة' : 'Open menu'"
+      (click)="toggleMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-content" [class.nav-content--open]="menuOpen()">
+      <div class="nav-links">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
+          {{ languageService.isArabic() ? 'القائمة الرئيسية' : 'Home' }}
+        </a>
+        <a href="/#best-sellers" (click)="closeMenu()">{{ languageService.isArabic() ? 'الأكثر مبيعاً' : 'Best Sellers' }}</a>
+        <a href="/#categories" (click)="closeMenu()">{{ languageService.isArabic() ? 'الأصناف' : 'Categories' }}</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="dropdown">
+          <button class="dropdown__button" type="button" aria-haspopup="true">
+            {{ languageService.isArabic() ? 'أقسام المنيو' : 'Menu Sections' }}
+          </button>
+          <ul class="dropdown__menu" [attr.aria-label]="languageService.isArabic() ? 'أقسام المنيو' : 'Menu sections'">
+            @for (category of categories; track category.slug) {
+              <li>
+                <a [routerLink]="['/category', category.slug]" (click)="closeMenu()">
+                  {{ languageService.isArabic() ? category.name : categoryNames[category.slug] }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <button class="language-toggle" type="button" (click)="toggleLanguage()">
+          {{ languageService.isArabic() ? 'English' : 'العربية' }}
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>

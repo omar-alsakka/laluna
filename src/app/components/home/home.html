@@ -1,0 +1,67 @@
+<main>
+  <section class="hero" aria-labelledby="home-title">
+    <div class="hero__media" aria-label="Laluna coffe visual intro">
+      <div class="hero__slide hero__slide--one"></div>
+      <div class="hero__slide hero__slide--two"></div>
+      <div class="hero__slide hero__slide--three"></div>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content section-shell">
+      <div class="hero__copy">
+        <h1 id="home-title">{{ languageService.isArabic() ? 'مشروبات، كريب وحلويات بطابع لالونا' : 'Drinks, crepes, and desserts with Laluna style' }}</h1>
+        <div class="hero__actions">
+          <a class="hero__button hero__button--primary" href="#best-sellers">{{ languageService.isArabic() ? 'الأكثر مبيعاً' : 'Best Sellers' }}</a>
+          <a class="hero__button hero__button--ghost" href="#categories">{{ languageService.isArabic() ? 'استعرض الأصناف' : 'Browse Categories' }}</a>
+        </div>
+      </div>
+
+      <div class="hero__brand-card">
+        <img class="hero__logo" src="assets/img/logo.jpeg" alt="Laluna coffe logo" />
+        <span>Fresh Coffee & Dessert</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="best-sellers" class="best-sellers section-shell" aria-labelledby="best-sellers-title">
+    <div class="section-heading">
+      <p>Best Sellers</p>
+      <h2 id="best-sellers-title">{{ languageService.isArabic() ? 'الأكثر مبيعاً' : 'Best Sellers' }}</h2>
+    </div>
+
+    <div class="featured-scroller">
+      @for (product of featuredProducts; track product.categorySlug + product.id) {
+        <a class="featured-card" [routerLink]="['/category', product.categorySlug, 'product', product.id]">
+          <img [src]="product.image" [alt]="productName(product, product.categorySlug, languageService.language())" />
+          <span class="featured-card__category">{{ languageService.isArabic() ? product.categoryName : categoryNames[product.categorySlug] }}</span>
+          <h3>{{ productName(product, product.categorySlug, languageService.language()) }}</h3>
+          <strong>{{ product.price }}</strong>
+        </a>
+      }
+    </div>
+  </section>
+
+  <section id="categories" class="categories section-shell" aria-labelledby="categories-title">
+    <div class="section-heading">
+      <p>Menu Categories</p>
+      <h2 id="categories-title">{{ languageService.isArabic() ? 'الأصناف' : 'Categories' }}</h2>
+    </div>
+
+    <div class="categories__grid">
+      @for (category of categories; track category.slug) {
+        <a class="category-card" [routerLink]="['/category', category.slug]">
+          <span class="category-card__image-wrap">
+            <img [src]="category.image" [alt]="languageService.isArabic() ? category.name : categoryNames[category.slug]" class="category-card__image" />
+          </span>
+          <span class="category-card__content">
+            <span class="category-card__subtitle">{{ category.subtitle }}</span>
+            <span class="category-card__name">{{ languageService.isArabic() ? category.name : categoryNames[category.slug] }}</span>
+            <span class="category-card__count">
+              {{ category.products.length }} {{ languageService.isArabic() ? 'منتج' : 'items' }}
+            </span>
+          </span>
+        </a>
+      }
+    </div>
+  </section>
+</main>

@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --color-primary: #321b11;
+  --color-secondary: #6f4326;
+  --color-accent: #ffd88b;
+  --color-bg: #fff8ea;
+  --color-card: #fffaf1;
+  --color-text: #2a1a12;
+  --shadow-soft: 0 18px 44px rgba(78, 44, 24, 0.14);
+  --shadow-strong: 0 28px 74px rgba(54, 29, 16, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-text);
+  font-family: 'Cairo', 'Segoe UI', Tahoma, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255, 216, 139, 0.78), transparent 31rem),
+    radial-gradient(circle at 90% 16%, rgba(111, 67, 38, 0.16), transparent 23rem),
+    linear-gradient(135deg, #fff8ea 0%, #f4dfc0 48%, #d8a96b 100%);
+  direction: rtl;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  content:
+    '\2615        \1F379       \1F36A        \1F9CB       \1F370\A'
+    '      \1F370        \2615       \1F379        \1F36A       \1F9CB\A'
+    '\1F9CB       \1F370        \2615       \1F379       \1F36A\A'
+    '    \1F36A       \1F9CB        \1F370       \2615       \1F379\A'
+    '\1F379        \1F36A       \1F9CB        \1F370       \2615';
+  width: 100%;
+  min-height: 100vh;
+  color: rgba(80, 42, 22, 0.5);
+  font-size: clamp(2.5rem, 8vw, 6.25rem);
+  font-weight: 900;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  letter-spacing: clamp(1rem, 5vw, 4rem);
+  opacity: 0.34;
+  filter: saturate(1.35) contrast(1.18) drop-shadow(0 10px 18px rgba(70, 35, 18, 0.22));
+  animation: emojiFloat 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes emojiFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.section-shell {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.section-heading {
+  margin-bottom: clamp(1.2rem, 4vw, 2rem);
+  text-align: center;
+}
+
+.section-heading p {
+  margin: 0 0 0.25rem;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  font-weight: 900;
+}

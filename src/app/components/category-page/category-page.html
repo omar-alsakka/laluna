@@ -1,0 +1,41 @@
+<main class="category-page section-shell">
+  @if (category(); as selectedCategory) {
+    <a class="back-link" routerLink="/">{{ languageService.isArabic() ? 'رجوع للقائمة الرئيسية' : 'Back to main menu' }}</a>
+
+    <header class="category-hero">
+      <div>
+        <p>{{ selectedCategory.subtitle }}</p>
+        <h1>{{ languageService.isArabic() ? selectedCategory.name : categoryNames[selectedCategory.slug] }}</h1>
+        <span>{{ selectedCategory.description }}</span>
+      </div>
+      <img [src]="selectedCategory.image" [alt]="languageService.isArabic() ? selectedCategory.name : categoryNames[selectedCategory.slug]" />
+    </header>
+
+    <section class="products-grid" [attr.aria-label]="languageService.isArabic() ? selectedCategory.name : categoryNames[selectedCategory.slug]">
+      @for (product of selectedCategory.products; track product.id) {
+        <a class="product-card" [routerLink]="['/category', selectedCategory.slug, 'product', product.id]">
+          <span class="product-card__image-wrap">
+            <img [src]="product.image" [alt]="productName(product, selectedCategory.slug, languageService.language())" class="product-card__image" />
+          </span>
+          <span class="product-card__body">
+            <span class="product-card__header">
+              <h2>{{ productName(product, selectedCategory.slug, languageService.language()) }}</h2>
+              <strong>{{ product.price }}</strong>
+            </span>
+            <span class="product-card__ingredients">
+              @for (ingredient of ingredients(product.ingredients, languageService.language()).slice(0, 4); track ingredient) {
+                <span>{{ ingredient }}</span>
+              }
+            </span>
+          </span>
+        </a>
+      }
+    </section>
+  } @else {
+    <section class="not-found">
+      <h1>{{ languageService.isArabic() ? 'الصنف غير موجود' : 'Category not found' }}</h1>
+      <p>{{ languageService.isArabic() ? 'الرابط المطلوب غير متوفر ضمن منيو Laluna coffe.' : 'The requested link is not available in the Laluna coffe menu.' }}</p>
+      <a routerLink="/">{{ languageService.isArabic() ? 'العودة للرئيسية' : 'Back home' }}</a>
+    </section>
+  }
+</main>

@@ -1,0 +1,40 @@
+<main class="product-page section-shell">
+  @if (product(); as selectedProduct) {
+    <a class="back-link" [routerLink]="['/category', category()?.slug]">
+      {{ languageService.isArabic() ? 'رجوع إلى' : 'Back to' }}
+      {{ languageService.isArabic() ? category()?.name : categoryNames[category()?.slug ?? ''] }}
+    </a>
+
+    <section class="product-details" aria-labelledby="product-title">
+      <div class="product-details__image-panel">
+        <img [src]="selectedProduct.image" [alt]="productName(selectedProduct, category()?.slug ?? '', languageService.language())" />
+      </div>
+
+      <div class="product-details__content">
+        <p class="eyebrow">Laluna coffe</p>
+        <h1 id="product-title">{{ productName(selectedProduct, category()?.slug ?? '', languageService.language()) }}</h1>
+        <p class="category-name">{{ languageService.isArabic() ? category()?.name : categoryNames[category()?.slug ?? ''] }}</p>
+
+        <div class="price-box">
+          <span>{{ languageService.isArabic() ? 'السعر' : 'Price' }}</span>
+          <strong>{{ selectedProduct.price }}</strong>
+        </div>
+
+        <div class="ingredients-box">
+          <h2>{{ languageService.isArabic() ? 'المكونات' : 'Ingredients' }}</h2>
+          <ul>
+            @for (ingredient of ingredients(selectedProduct.ingredients, languageService.language()); track ingredient) {
+              <li>{{ ingredient }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+  } @else {
+    <section class="not-found">
+      <h1>{{ languageService.isArabic() ? 'المنتج غير موجود' : 'Product not found' }}</h1>
+      <p>{{ languageService.isArabic() ? 'الرابط المطلوب غير متوفر ضمن منيو Laluna coffe.' : 'The requested link is not available in the Laluna coffe menu.' }}</p>
+      <a routerLink="/">{{ languageService.isArabic() ? 'العودة للرئيسية' : 'Back home' }}</a>
+    </section>
+  }
+</main>
