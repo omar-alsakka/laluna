@@ -7,12 +7,12 @@
   display: inline-flex;
   margin-bottom: 1.2rem;
   padding: 0.72rem 1.05rem;
-  color: #321b11;
-  font-weight: 900;
+  color: var(--color-primary);
+  font-weight: 800;
   text-decoration: none;
-  background: #ffd88b;
+  background: var(--color-accent);
   border-radius: 999px;
-  box-shadow: 0 12px 28px rgba(96, 57, 32, 0.15);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
 .product-details {
@@ -21,8 +21,8 @@
   gap: clamp(1.2rem, 4vw, 2rem);
   align-items: stretch;
   padding: clamp(1rem, 3vw, 1.4rem);
-  background: rgba(255, 250, 241, 0.86);
-  border: 1px solid rgba(94, 55, 31, 0.11);
+  background: rgba(33, 28, 24, 0.92);
+  border: 1px solid rgba(254, 210, 51, 0.12);
   border-radius: 36px;
   box-shadow: var(--shadow-strong);
   backdrop-filter: blur(12px);
@@ -31,7 +31,7 @@
 .product-details__image-panel {
   overflow: hidden;
   min-height: 430px;
-  background: linear-gradient(135deg, #ffd88b, #fff3dc);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-muted));
   border-radius: 30px;
 }
 
@@ -51,18 +51,18 @@
 
 .eyebrow {
   margin: 0 0 0.4rem;
-  color: #8a5229;
+  color: var(--color-accent);
   font-size: 0.85rem;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 h1 {
   margin: 0;
-  color: #321b11;
+  color: #ffffff;
   font-size: clamp(1.9rem, 4.6vw, 3.3rem);
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.12;
 }
 
@@ -70,9 +70,9 @@ h1 {
   width: fit-content;
   margin: 0.8rem 0 1.2rem;
   padding: 0.4rem 0.75rem;
-  color: #6f4326;
-  font-weight: 900;
-  background: #fff2d7;
+  color: #ffffff;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
 }
 
@@ -82,10 +82,71 @@ h1 {
   width: fit-content;
   margin-bottom: 1.4rem;
   padding: 0.95rem 1.25rem;
-  color: #321b11;
-  background: #ffd88b;
+  color: var(--color-primary);
+  background: var(--color-accent);
   border-radius: 22px;
-  box-shadow: 0 14px 30px rgba(255, 216, 139, 0.25);
+  box-shadow: 0 14px 30px rgba(254, 210, 51, 0.18);
+}
+
+.order-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 1.4rem;
+}
+
+.quantity-control {
+  display: inline-grid;
+  grid-template-columns: 42px 58px 42px;
+  overflow: hidden;
+  border: 1px solid rgba(254, 210, 51, 0.24);
+  border-radius: 999px;
+}
+
+.quantity-control button,
+.quantity-control input {
+  min-height: 42px;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0;
+}
+
+.quantity-control button {
+  cursor: pointer;
+}
+
+.quantity-control input {
+  width: 58px;
+  border-inline: 1px solid rgba(254, 210, 51, 0.2);
+}
+
+.add-cart-button,
+.view-cart-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.72rem 1.05rem;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  border: 0;
+  border-radius: 999px;
+}
+
+.add-cart-button {
+  color: var(--color-primary);
+  cursor: pointer;
+  background: var(--color-accent);
+}
+
+.view-cart-link {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .price-box span {
@@ -95,21 +156,21 @@ h1 {
 
 .price-box strong {
   font-size: clamp(1.35rem, 3vw, 2rem);
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .ingredients-box {
   padding: 1.15rem;
-  background: #fff8ea;
-  border: 1px solid rgba(94, 55, 31, 0.1);
+  background: rgba(23, 21, 20, 0.62);
+  border: 1px solid rgba(254, 210, 51, 0.12);
   border-radius: 26px;
 }
 
 .ingredients-box h2 {
   margin: 0 0 0.8rem;
-  color: #321b11;
+  color: #ffffff;
   font-size: clamp(1.3rem, 3vw, 1.8rem);
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .ingredients-box ul {
@@ -123,9 +184,9 @@ h1 {
 
 .ingredients-box li {
   padding: 0.56rem 0.85rem;
-  color: #fff8ea;
+  color: var(--color-primary);
   font-weight: 800;
-  background: #6f4326;
+  background: var(--color-accent);
   border-radius: 999px;
 }
 
@@ -134,17 +195,17 @@ h1 {
   margin: 4rem auto;
   padding: clamp(2rem, 6vw, 3rem);
   text-align: center;
-  background: #fffaf1;
+  background: var(--color-card);
   border-radius: 30px;
   box-shadow: var(--shadow-soft);
 }
 
 .not-found h1 {
-  color: #321b11;
+  color: #ffffff;
 }
 
 .not-found p {
-  color: #68432b;
+  color: var(--color-text-muted);
   line-height: 1.8;
 }
 
@@ -152,10 +213,10 @@ h1 {
   display: inline-flex;
   margin-top: 1rem;
   padding: 0.8rem 1.2rem;
-  color: #fff8ea;
-  font-weight: 900;
+  color: var(--color-primary);
+  font-weight: 800;
   text-decoration: none;
-  background: #6f4326;
+  background: var(--color-accent);
   border-radius: 999px;
 }
 

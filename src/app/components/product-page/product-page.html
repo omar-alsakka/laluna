@@ -20,6 +20,20 @@
           <strong>{{ selectedProduct.price }}</strong>
         </div>
 
+        <div class="order-box">
+          <div class="quantity-control" [attr.aria-label]="languageService.isArabic() ? 'اختيار الكمية' : 'Choose quantity'">
+            <button type="button" (click)="decrementQuantity()">-</button>
+            <input type="number" min="1" [value]="quantity()" (change)="updateQuantity($event)" />
+            <button type="button" (click)="incrementQuantity()">+</button>
+          </div>
+          <button class="add-cart-button" type="button" (click)="addToCart()">
+            {{ languageService.isArabic() ? 'إضافة للسلة' : 'Add to Cart' }}
+          </button>
+          <a class="view-cart-link" routerLink="/cart">
+            {{ languageService.isArabic() ? 'عرض السلة' : 'View Cart' }}
+          </a>
+        </div>
+
         <div class="ingredients-box">
           <h2>{{ languageService.isArabic() ? 'المكونات' : 'Ingredients' }}</h2>
           <ul>

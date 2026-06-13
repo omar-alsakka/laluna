@@ -225,7 +225,6 @@ export const categories: Category[] = [
     ]
   }
 ];
-
 export const featuredProducts = categories
   .flatMap((category) =>
     category.products

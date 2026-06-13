@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { categories } from '../../data/menu-data';
+import { CartService } from '../../services/cart.service';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { LanguageService } from '../../services/language.service';
 export class Navbar {
   protected readonly categories = categories;
   protected readonly menuOpen = signal(false);
+  protected readonly cart = inject(CartService);
   protected readonly languageService = inject(LanguageService);
 
   protected readonly categoryNames: Record<string, string> = {

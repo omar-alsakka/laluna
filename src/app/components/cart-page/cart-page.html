@@ -1,0 +1,63 @@
+<main class="cart-page section-shell">
+  <header class="cart-hero">
+    <p>{{ languageService.isArabic() ? 'طلباتك' : 'Your Order' }}</p>
+    <h1>{{ languageService.isArabic() ? 'السلة' : 'Cart' }}</h1>
+  </header>
+
+  @if (cart.items().length) {
+    <section class="cart-layout" aria-live="polite">
+      <div class="cart-items">
+        @for (item of cart.items(); track item.key) {
+          <article class="cart-item">
+            <img [src]="item.product.image" [alt]="productName(item.product, item.categorySlug, languageService.language())" />
+
+            <div class="cart-item__body">
+              <span class="cart-item__category">{{ languageService.isArabic() ? item.categoryName : categoryNames[item.categorySlug] }}</span>
+              <h2>{{ productName(item.product, item.categorySlug, languageService.language()) }}</h2>
+              <strong>{{ item.product.price }}</strong>
+            </div>
+
+            <div class="quantity-control" [attr.aria-label]="languageService.isArabic() ? 'تعديل الكمية' : 'Update quantity'">
+              <button type="button" (click)="cart.decrement(item.key)">-</button>
+              <input type="number" min="1" [value]="item.quantity" (change)="updateQuantity(item.key, $event)" />
+              <button type="button" (click)="cart.increment(item.key)">+</button>
+            </div>
+
+            <div class="cart-item__total">
+              <span>{{ languageService.isArabic() ? 'المجموع' : 'Total' }}</span>
+              <strong>{{ cart.formatPrice(cart.lineTotal(item)) }}</strong>
+            </div>
+
+            <button class="remove-button" type="button" (click)="cart.removeItem(item.key)">
+              {{ languageService.isArabic() ? 'حذف' : 'Remove' }}
+            </button>
+          </article>
+        }
+      </div>
+
+      <aside class="cart-summary">
+        <h2>{{ languageService.isArabic() ? 'ملخص الطلب' : 'Order Summary' }}</h2>
+        <div>
+          <span>{{ languageService.isArabic() ? 'عدد المنتجات' : 'Items' }}</span>
+          <strong>{{ cart.totalItems() }}</strong>
+        </div>
+        <div>
+          <span>{{ languageService.isArabic() ? 'المجموع' : 'Total' }}</span>
+          <strong>{{ cart.formatPrice(cart.totalPrice()) }}</strong>
+        </div>
+        <a class="checkout-button" [href]="checkoutUrl()" target="_blank" rel="noopener">
+          {{ languageService.isArabic() ? 'اطلب الآن عبر واتساب' : 'Order Now on WhatsApp' }}
+        </a>
+        <button class="clear-button" type="button" (click)="cart.clear()">
+          {{ languageService.isArabic() ? 'تفريغ السلة' : 'Clear Cart' }}
+        </button>
+      </aside>
+    </section>
+  } @else {
+    <section class="empty-cart">
+      <h2>{{ languageService.isArabic() ? 'السلة فارغة' : 'Your cart is empty' }}</h2>
+      <p>{{ languageService.isArabic() ? 'أضف منتجات من المنيو حتى تظهر هنا.' : 'Add products from the menu to see them here.' }}</p>
+      <a routerLink="/">{{ languageService.isArabic() ? 'العودة للمنيو' : 'Back to menu' }}</a>
+    </section>
+  }
+</main>

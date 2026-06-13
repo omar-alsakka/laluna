@@ -5,6 +5,8 @@ import { map } from 'rxjs';
 
 import { getCategoryBySlug } from '../../data/menu-data';
 import { ingredients, productName } from '../../data/translations';
+import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart.service';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
@@ -15,6 +17,7 @@ import { LanguageService } from '../../services/language.service';
 })
 export class CategoryPage {
   private readonly route = inject(ActivatedRoute);
+  protected readonly cart = inject(CartService);
   protected readonly languageService = inject(LanguageService);
   protected readonly productName = productName;
   protected readonly ingredients = ingredients;
@@ -34,4 +37,17 @@ export class CategoryPage {
   });
 
   protected readonly category = computed(() => getCategoryBySlug(this.slug()));
+
+  protected addToCart(event: Event, product: Product): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const selectedCategory = this.category();
+
+    if (!selectedCategory) {
+      return;
+    }
+
+    this.cart.addItem(selectedCategory.slug, selectedCategory.name, product);
+  }
 }

@@ -27,6 +27,9 @@
                 <span>{{ ingredient }}</span>
               }
             </span>
+            <button class="product-card__cart" type="button" (click)="addToCart($event, product)">
+              {{ languageService.isArabic() ? 'أضف للسلة' : 'Add to Cart' }}
+            </button>
           </span>
         </a>
       }

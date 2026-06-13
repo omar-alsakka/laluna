@@ -1,0 +1,233 @@
+.cart-page {
+  padding-top: clamp(1.6rem, 5vw, 3rem);
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.cart-hero,
+.cart-summary,
+.empty-cart {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(254, 210, 51, 0.15), transparent 16rem),
+    linear-gradient(135deg, rgba(23, 21, 20, 0.98), rgba(33, 28, 24, 0.96));
+  border: 1px solid rgba(254, 210, 51, 0.16);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.cart-hero {
+  margin-bottom: clamp(1.2rem, 4vw, 2rem);
+  padding: clamp(1.3rem, 4vw, 2.2rem);
+  text-align: center;
+}
+
+.cart-hero p {
+  margin: 0 0 0.35rem;
+  color: var(--color-accent);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cart-hero h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  align-items: start;
+}
+
+.cart-items {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) auto auto auto;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.8rem;
+  background: rgba(33, 28, 24, 0.92);
+  border: 1px solid rgba(254, 210, 51, 0.12);
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.cart-item img {
+  width: 92px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.cart-item__body {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.cart-item__category {
+  width: fit-content;
+  padding: 0.28rem 0.55rem;
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: var(--color-accent);
+  border-radius: 999px;
+}
+
+.cart-item h2,
+.cart-summary h2,
+.empty-cart h2 {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.cart-item h2 {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.35;
+}
+
+.cart-item strong,
+.cart-item__total strong,
+.cart-summary strong {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+.quantity-control {
+  display: inline-grid;
+  grid-template-columns: 38px 54px 38px;
+  overflow: hidden;
+  border: 1px solid rgba(254, 210, 51, 0.24);
+  border-radius: 999px;
+}
+
+.quantity-control button,
+.quantity-control input {
+  min-height: 38px;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0;
+}
+
+.quantity-control button {
+  cursor: pointer;
+}
+
+.quantity-control input {
+  width: 54px;
+  border-inline: 1px solid rgba(254, 210, 51, 0.2);
+}
+
+.cart-item__total {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 96px;
+}
+
+.cart-item__total span,
+.cart-summary span,
+.empty-cart p {
+  color: var(--color-text-muted);
+}
+
+.remove-button,
+.clear-button,
+.checkout-button,
+.empty-cart a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 1rem;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  border: 0;
+  border-radius: 999px;
+}
+
+.remove-button,
+.clear-button {
+  color: #ffffff;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cart-summary {
+  position: sticky;
+  top: 98px;
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem;
+}
+
+.cart-summary div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkout-button,
+.empty-cart a {
+  color: var(--color-primary);
+  background: var(--color-accent);
+}
+
+.empty-cart {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  width: min(620px, 100%);
+  margin-inline: auto;
+  padding: clamp(2rem, 6vw, 3rem);
+  text-align: center;
+}
+
+.empty-cart p {
+  margin: 0;
+}
+
+@media (max-width: 920px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .cart-item {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+
+  .cart-item img {
+    width: 78px;
+  }
+
+  .quantity-control,
+  .cart-item__total,
+  .remove-button {
+    grid-column: 1 / -1;
+  }
+
+  .quantity-control {
+    justify-self: start;
+  }
+
+  .remove-button {
+    justify-self: start;
+  }
+}

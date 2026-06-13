@@ -23,16 +23,21 @@
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
           {{ languageService.isArabic() ? 'القائمة الرئيسية' : 'Home' }}
         </a>
-        <a href="/#best-sellers" (click)="closeMenu()">{{ languageService.isArabic() ? 'الأكثر مبيعاً' : 'Best Sellers' }}</a>
-        <a href="/#categories" (click)="closeMenu()">{{ languageService.isArabic() ? 'الأصناف' : 'Categories' }}</a>
+        <a href="/#categories" (click)="closeMenu()">{{ languageService.isArabic() ? 'منيو' : 'Menu' }}</a>
+        <a class="cart-link" routerLink="/cart" routerLinkActive="active" (click)="closeMenu()">
+          {{ languageService.isArabic() ? 'السلة' : 'Cart' }}
+          @if (cart.totalItems()) {
+            <span>{{ cart.totalItems() }}</span>
+          }
+        </a>
       </div>
 
       <div class="nav-actions">
         <div class="dropdown">
           <button class="dropdown__button" type="button" aria-haspopup="true">
-            {{ languageService.isArabic() ? 'أقسام المنيو' : 'Menu Sections' }}
+            {{ languageService.isArabic() ? 'منيو' : 'Menu' }}
           </button>
-          <ul class="dropdown__menu" [attr.aria-label]="languageService.isArabic() ? 'أقسام المنيو' : 'Menu sections'">
+          <ul class="dropdown__menu" [attr.aria-label]="languageService.isArabic() ? 'منيو' : 'Menu'">
             @for (category of categories; track category.slug) {
               <li>
                 <a [routerLink]="['/category', category.slug]" (click)="closeMenu()">

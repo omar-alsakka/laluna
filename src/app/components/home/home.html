@@ -8,18 +8,7 @@
     </div>
 
     <div class="hero__content section-shell">
-      <div class="hero__copy">
-        <h1 id="home-title">{{ languageService.isArabic() ? 'مشروبات، كريب وحلويات بطابع لالونا' : 'Drinks, crepes, and desserts with Laluna style' }}</h1>
-        <div class="hero__actions">
-          <a class="hero__button hero__button--primary" href="#best-sellers">{{ languageService.isArabic() ? 'الأكثر مبيعاً' : 'Best Sellers' }}</a>
-          <a class="hero__button hero__button--ghost" href="#categories">{{ languageService.isArabic() ? 'استعرض الأصناف' : 'Browse Categories' }}</a>
-        </div>
-      </div>
-
-      <div class="hero__brand-card">
-        <img class="hero__logo" src="assets/img/logo.jpeg" alt="Laluna coffe logo" />
-        <span>Fresh Coffee & Dessert</span>
-      </div>
+      <span id="home-title" class="sr-only">{{ languageService.isArabic() ? 'صورة تعريفية' : 'Visual intro' }}</span>
     </div>
   </section>
 
@@ -43,8 +32,8 @@
 
   <section id="categories" class="categories section-shell" aria-labelledby="categories-title">
     <div class="section-heading">
-      <p>Menu Categories</p>
-      <h2 id="categories-title">{{ languageService.isArabic() ? 'الأصناف' : 'Categories' }}</h2>
+      <p>La Luna Menu</p>
+      <h2 id="categories-title">{{ languageService.isArabic() ? 'منيو' : 'Menu' }}</h2>
     </div>
 
     <div class="categories__grid">
