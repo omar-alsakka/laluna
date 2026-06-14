@@ -12,15 +12,24 @@ export interface CartItem {
   quantity: number;
 }
 
+export interface CartNotification {
+  id: number;
+  product: Product;
+  categorySlug: string;
+  quantity: number;
+}
+
 const whatsappNumber = '963993448864';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
   readonly items = signal<CartItem[]>([]);
+  readonly lastAddedItem = signal<CartNotification | null>(null);
   readonly totalItems = computed(() => this.items().reduce((total, item) => total + item.quantity, 0));
   readonly totalPrice = computed(() =>
     this.items().reduce((total, item) => total + this.priceValue(item.product.price) * item.quantity, 0)
   );
+  private notificationTimeout: ReturnType<typeof setTimeout> | undefined;
 
   addItem(categorySlug: string, categoryName: string, product: Product, quantity = 1): void {
     const safeQuantity = Math.max(1, Math.floor(quantity));
@@ -37,6 +46,7 @@ export class CartService {
 
       return [...items, { key, categorySlug, categoryName, product, quantity: safeQuantity }];
     });
+    this.showAddedNotification(categorySlug, product, safeQuantity);
   }
 
   increment(key: string): void {
@@ -104,6 +114,15 @@ export class CartService {
 
   private itemKey(categorySlug: string, productId: number): string {
     return `${categorySlug}-${productId}`;
+  }
+
+  private showAddedNotification(categorySlug: string, product: Product, quantity: number): void {
+    if (this.notificationTimeout) {
+      clearTimeout(this.notificationTimeout);
+    }
+
+    this.lastAddedItem.set({ id: Date.now(), categorySlug, product, quantity });
+    this.notificationTimeout = setTimeout(() => this.lastAddedItem.set(null), 1800);
   }
 
   private priceValue(price: string): number {

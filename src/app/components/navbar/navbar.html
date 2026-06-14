@@ -5,6 +5,13 @@
       <span class="brand__name">Laluna coffe</span>
     </a>
 
+    <a class="mobile-cart-link" [class.mobile-cart-link--bump]="cart.lastAddedItem()" routerLink="/cart" routerLinkActive="active" (click)="closeMenu()">
+      {{ languageService.isArabic() ? 'السلة' : 'Cart' }}
+      @if (cart.totalItems()) {
+        <span>{{ cart.totalItems() }}</span>
+      }
+    </a>
+
     <button
       class="nav-toggle"
       type="button"
@@ -24,7 +31,7 @@
           {{ languageService.isArabic() ? 'القائمة الرئيسية' : 'Home' }}
         </a>
         <a href="/#categories" (click)="closeMenu()">{{ languageService.isArabic() ? 'منيو' : 'Menu' }}</a>
-        <a class="cart-link" routerLink="/cart" routerLinkActive="active" (click)="closeMenu()">
+        <a class="cart-link desktop-cart-link" [class.cart-link--bump]="cart.lastAddedItem()" routerLink="/cart" routerLinkActive="active" (click)="closeMenu()">
           {{ languageService.isArabic() ? 'السلة' : 'Cart' }}
           @if (cart.totalItems()) {
             <span>{{ cart.totalItems() }}</span>
@@ -54,4 +61,18 @@
       </div>
     </div>
   </nav>
+
+  @if (cart.lastAddedItem(); as addedItem) {
+    <div class="cart-toast" role="status" aria-live="polite">
+      <span class="cart-toast__icon">✓</span>
+      <span>
+        {{ languageService.isArabic() ? 'تمت إضافة' : 'Added' }}
+        <strong>{{ productName(addedItem.product, addedItem.categorySlug, languageService.language()) }}</strong>
+        {{ languageService.isArabic() ? 'للسلة' : 'to cart' }}
+        @if (addedItem.quantity > 1) {
+          <small>× {{ addedItem.quantity }}</small>
+        }
+      </span>
+    </div>
+  }
 </header>
