@@ -1,7 +1,7 @@
 import { Category } from '../models/product.model';
 
 const imagePath = 'assets/img/';
-const logoImage = `${imagePath}logo.jpeg`;
+const logoImage = `${imagePath}logo2.jpeg`;
 
 function product(id: number, name: string, price: number | string, ingredients: string[], image = logoImage, featured = false) {
   return { id, name, image, price: `${price} ل.س`, ingredients, featured };
