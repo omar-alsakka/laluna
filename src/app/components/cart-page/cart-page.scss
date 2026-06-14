@@ -23,16 +23,17 @@
 .cart-hero p {
   margin: 0 0 0.35rem;
   color: var(--color-accent);
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .cart-hero h1 {
   margin: 0;
   color: #ffffff;
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 800;
+  font-size: clamp(1.8rem, 5.4vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .cart-layout {
@@ -86,12 +87,12 @@
 .empty-cart h2 {
   margin: 0;
   color: #ffffff;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .cart-item h2 {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  line-height: 1.35;
+  line-height: 1.45;
 }
 
 .cart-item strong,
