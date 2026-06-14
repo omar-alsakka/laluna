@@ -98,6 +98,13 @@
   border-radius: 999px;
 }
 
+.cart-link svg,
+.mobile-cart-link svg {
+  width: 1.28rem;
+  height: 1.28rem;
+  fill: currentColor;
+}
+
 .cart-link:hover span,
 .cart-link.active span,
 .mobile-cart-link:hover span,
@@ -325,7 +332,9 @@
     align-items: center;
     justify-self: center;
     gap: 0.42rem;
-    padding: 0.68rem 1.05rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    padding: 0.68rem 0.88rem;
     color: var(--color-primary);
     font-weight: 800;
     text-decoration: none;

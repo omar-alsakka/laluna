@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
@@ -37,6 +37,7 @@ export class CategoryPage {
   });
 
   protected readonly category = computed(() => getCategoryBySlug(this.slug()));
+  protected readonly quantities = signal<Record<number, number>>({});
 
   protected addToCart(event: Event, product: Product): void {
     event.preventDefault();
@@ -48,6 +49,31 @@ export class CategoryPage {
       return;
     }
 
-    this.cart.addItem(selectedCategory.slug, selectedCategory.name, product);
+    this.cart.addItem(selectedCategory.slug, selectedCategory.name, product, this.quantityFor(product.id));
+  }
+
+  protected quantityFor(productId: number): number {
+    return this.quantities()[productId] ?? 1;
+  }
+
+  protected incrementQuantity(event: Event, productId: number): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.quantities.update((quantities) => ({ ...quantities, [productId]: this.quantityFor(productId) + 1 }));
+  }
+
+  protected decrementQuantity(event: Event, productId: number): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.quantities.update((quantities) => ({ ...quantities, [productId]: Math.max(1, this.quantityFor(productId) - 1) }));
+  }
+
+  protected updateQuantity(event: Event, productId: number): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const input = event.target as HTMLInputElement;
+    const quantity = Math.max(1, Math.floor(Number(input.value) || 1));
+    this.quantities.update((quantities) => ({ ...quantities, [productId]: quantity }));
   }
 }

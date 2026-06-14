@@ -27,9 +27,16 @@
                 <span>{{ ingredient }}</span>
               }
             </span>
-            <button class="product-card__cart" type="button" (click)="addToCart($event, product)">
-              {{ languageService.isArabic() ? 'أضف للسلة' : 'Add to Cart' }}
-            </button>
+            <span class="product-card__order">
+              <span class="product-card__quantity" [attr.aria-label]="languageService.isArabic() ? 'اختيار الكمية' : 'Choose quantity'">
+                <button type="button" (click)="decrementQuantity($event, product.id)">-</button>
+                <input type="number" min="1" [value]="quantityFor(product.id)" (click)="$event.stopPropagation()" (change)="updateQuantity($event, product.id)" />
+                <button type="button" (click)="incrementQuantity($event, product.id)">+</button>
+              </span>
+              <button class="product-card__cart" type="button" (click)="addToCart($event, product)">
+                {{ languageService.isArabic() ? 'أضف للسلة' : 'Add to Cart' }}
+              </button>
+            </span>
           </span>
         </a>
       }
